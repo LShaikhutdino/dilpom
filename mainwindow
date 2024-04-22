@@ -1,0 +1,125 @@
+digraph clustermainwindow {
+	graph [label=mainwindow]
+	1 [label="from PyQt6.QtWidgets import *
+from PyQt6 import uic
+from PyQt6.QtCore import Qt
+import sys
+from windows2 import *
+def __init__(self):...
+def downloadFile(self):...
+def deleteItemFrmList(self):...
+def addText(self):...
+def openSecondWindow(self):...
+if __name__ == '__main__':
+"]
+	29 [label="app = QApplication(sys.argv)
+main_window = MainWindow()
+sys.exit(app.exec())
+"]
+	"29_calls" [label="QApplication
+MainWindow
+sys.exit" shape=box]
+	29 -> "29_calls" [label=calls style=dashed]
+	1 -> 29 [label="__name__ == '__main__'"]
+	subgraph cluster__init__ {
+		graph [label=__init__]
+		3 [label="super().__init__()
+self.ui = uic.loadUi('mainwindow.ui', self)
+self.textNames = {}
+self.ui.pushButton.clicked.connect(self.downloadFile)
+self.ui.pushButton_2.clicked.connect(self.deleteItemFrmList)
+self.ui.pushButton_4.clicked.connect(self.addText)
+self.ui.pushButton_5.clicked.connect(self.openSecondWindow)
+self.show()
+"]
+		"3_calls" [label=".__init__
+uic.loadUi
+self.ui.pushButton.clicked.connect
+self.ui.pushButton_2.clicked.connect
+self.ui.pushButton_4.clicked.connect
+self.ui.pushButton_5.clicked.connect
+self.show" shape=box]
+		3 -> "3_calls" [label=calls style=dashed]
+	}
+	subgraph clusterdownloadFile {
+		graph [label=downloadFile]
+		6 [label="dialog = QFileDialog(self)
+dialog.setNameFilter('Text files (*.txt)')
+dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
+dialog.setViewMode(QFileDialog.ViewMode.List)
+if dialog.exec():
+"]
+		"6_calls" [label="QFileDialog
+dialog.setNameFilter
+dialog.setFileMode
+dialog.setViewMode" shape=box]
+		6 -> "6_calls" [label=calls style=dashed]
+		7 [label="fileNames = dialog.selectedFiles()
+if fileNames:
+"]
+		"7_calls" [label="dialog.selectedFiles" shape=box]
+		7 -> "7_calls" [label=calls style=dashed]
+		9 [label="for fileName in fileNames:
+"]
+		11 [label="items = self.listWidget.findItems(str(fileName), Qt.MatchFlag.MatchExactly)
+if len(items) == 0:
+"]
+		"11_calls" [label="self.listWidget.findItems" shape=box]
+		11 -> "11_calls" [label=calls style=dashed]
+		13 [label="self.listWidget.addItem(str(fileName))
+"]
+		"13_calls" [label="self.listWidget.addItem" shape=box]
+		13 -> "13_calls" [label=calls style=dashed]
+		13 -> 9 [label=""]
+		11 -> 13 [label="len(items) == 0"]
+		11 -> 9 [label="(len(items) != 0)"]
+		9 -> 11 [label=fileNames]
+		7 -> 9 [label=fileNames]
+		6 -> 7 [label="dialog.exec()"]
+	}
+	subgraph clusterdeleteItemFrmList {
+		graph [label=deleteItemFrmList]
+		17 [label="for item in self.listWidget.selectedItems():
+"]
+		18 [label="self.listWidget.takeItem(self.listWidget.row(item))
+"]
+		"18_calls" [label="self.listWidget.takeItem" shape=box]
+		18 -> "18_calls" [label=calls style=dashed]
+		18 -> 17 [label=""]
+		17 -> 18 [label="self.listWidget.selectedItems()"]
+	}
+	subgraph clusteraddText {
+		graph [label=addText]
+		22 [label="maxTextId = 0
+if self.textNames != {}:
+"]
+		23 [label="maxTextId = max(self.textNames)
+"]
+		"23_calls" [label=max shape=box]
+		23 -> "23_calls" [label=calls style=dashed]
+		24 [label="self.textNames[maxTextId + 1] = self.textEdit.toPlainText()
+self.listWidget.addItems([str('Text ' + str(maxTextId + 1))])
+self.textEdit.clear()
+self.tabWidget.setCurrentIndex(0)
+"]
+		"24_calls" [label="self.textEdit.toPlainText
+self.listWidget.addItems
+self.textEdit.clear
+self.tabWidget.setCurrentIndex" shape=box]
+		24 -> "24_calls" [label=calls style=dashed]
+		23 -> 24 [label=""]
+		22 -> 23 [label="self.textNames != {}"]
+		22 -> 24 [label="(self.textNames == {})"]
+	}
+	subgraph clusteropenSecondWindow {
+		graph [label=openSecondWindow]
+		27 [label="lw = self.listWidget
+Window2(textNames=self.textNames, fileNames=[lw.item(x).text() for x in
+    range(lw.count())])
+self.close()
+"]
+		"27_calls" [label="Window2
+self.close" shape=box]
+		27 -> "27_calls" [label=calls style=dashed]
+	}
+}

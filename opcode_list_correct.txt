@@ -1,0 +1,330 @@
+Disassembly of MainWindow:
+Disassembly of __init__:
+              0 COPY_FREE_VARS           1
+
+  9           2 RESUME                   0
+
+ 10           4 LOAD_GLOBAL              1 (NULL + super)
+             16 PRECALL                  0
+             20 CALL                     0
+             30 LOAD_METHOD              1 (__init__)
+             52 PRECALL                  0
+             56 CALL                     0
+             66 POP_TOP
+
+ 11          68 LOAD_GLOBAL              5 (NULL + uic)
+             80 LOAD_ATTR                3 (loadUi)
+             90 LOAD_CONST               1 ('mainwindow.ui')
+             92 LOAD_FAST                0 (self)
+             94 PRECALL                  2
+             98 CALL                     2
+            108 LOAD_FAST                0 (self)
+            110 STORE_ATTR               4 (ui)
+
+ 19         120 BUILD_MAP                0
+            122 LOAD_FAST                0 (self)
+            124 STORE_ATTR               5 (textNames)
+
+ 25         134 LOAD_FAST                0 (self)
+            136 LOAD_ATTR                4 (ui)
+            146 LOAD_ATTR                6 (pushButton)
+            156 LOAD_ATTR                7 (clicked)
+            166 LOAD_METHOD              8 (connect)
+            188 LOAD_FAST                0 (self)
+            190 LOAD_ATTR                9 (downloadFile)
+            200 PRECALL                  1
+            204 CALL                     1
+            214 POP_TOP
+
+ 27         216 LOAD_FAST                0 (self)
+            218 LOAD_ATTR                4 (ui)
+            228 LOAD_ATTR               10 (pushButton_2)
+            238 LOAD_ATTR                7 (clicked)
+            248 LOAD_METHOD              8 (connect)
+            270 LOAD_FAST                0 (self)
+            272 LOAD_ATTR               11 (deleteItemFrmList)
+            282 PRECALL                  1
+            286 CALL                     1
+            296 POP_TOP
+
+ 29         298 LOAD_FAST                0 (self)
+            300 LOAD_ATTR                4 (ui)
+            310 LOAD_ATTR               12 (pushButton_4)
+            320 LOAD_ATTR                7 (clicked)
+            330 LOAD_METHOD              8 (connect)
+            352 LOAD_FAST                0 (self)
+            354 LOAD_ATTR               13 (addText)
+            364 PRECALL                  1
+            368 CALL                     1
+            378 POP_TOP
+
+ 31         380 LOAD_FAST                0 (self)
+            382 LOAD_ATTR                4 (ui)
+            392 LOAD_ATTR               14 (pushButton_5)
+            402 LOAD_ATTR                7 (clicked)
+            412 LOAD_METHOD              8 (connect)
+            434 LOAD_FAST                0 (self)
+            436 LOAD_ATTR               15 (openSecondWindow)
+            446 PRECALL                  1
+            450 CALL                     1
+            460 POP_TOP
+
+ 33         462 LOAD_FAST                0 (self)
+            464 LOAD_METHOD             16 (show)
+            486 PRECALL                  0
+            490 CALL                     0
+            500 POP_TOP
+            502 LOAD_CONST               0 (None)
+            504 RETURN_VALUE
+
+Disassembly of addText:
+ 57           0 RESUME                   0
+
+ 59           2 LOAD_CONST               1 (0)
+              4 STORE_FAST               1 (maxTextId)
+
+ 60           6 LOAD_FAST                0 (self)
+              8 LOAD_ATTR                0 (textNames)
+             18 BUILD_MAP                0
+             20 COMPARE_OP               3 (!=)
+             26 POP_JUMP_FORWARD_IF_FALSE    20 (to 68)
+
+ 61          28 LOAD_GLOBAL              3 (NULL + max)
+             40 LOAD_FAST                0 (self)
+             42 LOAD_ATTR                0 (textNames)
+             52 PRECALL                  1
+             56 CALL                     1
+             66 STORE_FAST               1 (maxTextId)
+
+ 62     >>   68 LOAD_FAST                0 (self)
+             70 LOAD_ATTR                2 (textEdit)
+             80 LOAD_METHOD              3 (toPlainText)
+            102 PRECALL                  0
+            106 CALL                     0
+            116 LOAD_FAST                0 (self)
+            118 LOAD_ATTR                0 (textNames)
+            128 LOAD_FAST                1 (maxTextId)
+            130 LOAD_CONST               2 (1)
+            132 BINARY_OP                0 (+)
+            136 STORE_SUBSCR
+
+ 64         140 LOAD_FAST                0 (self)
+            142 LOAD_ATTR                4 (listWidget)
+            152 LOAD_METHOD              5 (addItems)
+            174 LOAD_GLOBAL             13 (NULL + str)
+            186 LOAD_CONST               3 ('Text ')
+            188 LOAD_GLOBAL             13 (NULL + str)
+            200 LOAD_FAST                1 (maxTextId)
+            202 LOAD_CONST               2 (1)
+            204 BINARY_OP                0 (+)
+            208 PRECALL                  1
+            212 CALL                     1
+            222 BINARY_OP                0 (+)
+            226 PRECALL                  1
+            230 CALL                     1
+            240 BUILD_LIST               1
+            242 PRECALL                  1
+            246 CALL                     1
+            256 POP_TOP
+
+ 67         258 LOAD_FAST                0 (self)
+            260 LOAD_ATTR                2 (textEdit)
+            270 LOAD_METHOD              7 (clear)
+            292 PRECALL                  0
+            296 CALL                     0
+            306 POP_TOP
+
+ 68         308 LOAD_FAST                0 (self)
+            310 LOAD_ATTR                8 (tabWidget)
+            320 LOAD_METHOD              9 (setCurrentIndex)
+            342 LOAD_CONST               1 (0)
+            344 PRECALL                  1
+            348 CALL                     1
+            358 POP_TOP
+            360 LOAD_CONST               0 (None)
+            362 RETURN_VALUE
+
+Disassembly of deleteItemFrmList:
+ 50           0 RESUME                   0
+
+ 51           2 LOAD_FAST                0 (self)
+              4 LOAD_ATTR                0 (listWidget)
+             14 LOAD_METHOD              1 (selectedItems)
+             36 PRECALL                  0
+             40 CALL                     0
+             50 GET_ITER
+        >>   52 FOR_ITER                52 (to 158)
+             54 STORE_FAST               1 (item)
+
+ 54          56 LOAD_FAST                0 (self)
+             58 LOAD_ATTR                0 (listWidget)
+             68 LOAD_METHOD              2 (takeItem)
+             90 LOAD_FAST                0 (self)
+             92 LOAD_ATTR                0 (listWidget)
+            102 LOAD_METHOD              3 (row)
+            124 LOAD_FAST                1 (item)
+            126 PRECALL                  1
+            130 CALL                     1
+            140 PRECALL                  1
+            144 CALL                     1
+            154 POP_TOP
+            156 JUMP_BACKWARD           53 (to 52)
+
+ 51     >>  158 LOAD_CONST               0 (None)
+            160 RETURN_VALUE
+
+Disassembly of downloadFile:
+ 35           0 RESUME                   0
+
+ 36           2 LOAD_GLOBAL              1 (NULL + QFileDialog)
+             14 LOAD_FAST                0 (self)
+             16 PRECALL                  1
+             20 CALL                     1
+             30 STORE_FAST               1 (dialog)
+
+ 38          32 LOAD_FAST                1 (dialog)
+             34 LOAD_METHOD              1 (setNameFilter)
+             56 LOAD_CONST               1 ('Text files (*.txt)')
+             58 PRECALL                  1
+             62 CALL                     1
+             72 POP_TOP
+
+ 39          74 LOAD_FAST                1 (dialog)
+             76 LOAD_METHOD              2 (setFileMode)
+             98 LOAD_GLOBAL              0 (QFileDialog)
+            110 LOAD_ATTR                3 (FileMode)
+            120 LOAD_ATTR                4 (ExistingFiles)
+            130 PRECALL                  1
+            134 CALL                     1
+            144 POP_TOP
+
+ 40         146 LOAD_FAST                1 (dialog)
+            148 LOAD_METHOD              5 (setViewMode)
+            170 LOAD_GLOBAL              0 (QFileDialog)
+            182 LOAD_ATTR                6 (ViewMode)
+            192 LOAD_ATTR                7 (List)
+            202 PRECALL                  1
+            206 CALL                     1
+            216 POP_TOP
+
+ 41         218 LOAD_FAST                1 (dialog)
+            220 LOAD_METHOD              8 (exec)
+            242 PRECALL                  0
+            246 CALL                     0
+            256 POP_JUMP_FORWARD_IF_FALSE   140 (to 538)
+
+ 43         258 LOAD_FAST                1 (dialog)
+            260 LOAD_METHOD              9 (selectedFiles)
+            282 PRECALL                  0
+            286 CALL                     0
+            296 STORE_FAST               2 (fileNames)
+
+ 44         298 LOAD_FAST                2 (fileNames)
+            300 POP_JUMP_FORWARD_IF_FALSE   120 (to 542)
+
+ 45         302 LOAD_FAST                2 (fileNames)
+            304 GET_ITER
+        >>  306 FOR_ITER               119 (to 546)
+            308 STORE_FAST               3 (fileName)
+
+ 46         310 LOAD_FAST                0 (self)
+            312 LOAD_ATTR               10 (listWidget)
+            322 LOAD_METHOD             11 (findItems)
+            344 LOAD_GLOBAL             25 (NULL + str)
+            356 LOAD_FAST                3 (fileName)
+            358 PRECALL                  1
+            362 CALL                     1
+            372 LOAD_GLOBAL             26 (Qt)
+            384 LOAD_ATTR               14 (MatchFlag)
+            394 LOAD_ATTR               15 (MatchExactly)
+            404 PRECALL                  2
+            408 CALL                     2
+            418 STORE_FAST               4 (items)
+
+ 47         420 LOAD_GLOBAL             33 (NULL + len)
+            432 LOAD_FAST                4 (items)
+            434 PRECALL                  1
+            438 CALL                     1
+            448 LOAD_CONST               2 (0)
+            450 COMPARE_OP               2 (==)
+            456 POP_JUMP_FORWARD_IF_FALSE    39 (to 536)
+
+ 48         458 LOAD_FAST                0 (self)
+            460 LOAD_ATTR               10 (listWidget)
+            470 LOAD_METHOD             17 (addItem)
+            492 LOAD_GLOBAL             25 (NULL + str)
+            504 LOAD_FAST                3 (fileName)
+            506 PRECALL                  1
+            510 CALL                     1
+            520 PRECALL                  1
+            524 CALL                     1
+            534 POP_TOP
+        >>  536 JUMP_BACKWARD          116 (to 306)
+
+ 41     >>  538 LOAD_CONST               0 (None)
+            540 RETURN_VALUE
+
+ 44     >>  542 LOAD_CONST               0 (None)
+            544 RETURN_VALUE
+
+ 45     >>  546 LOAD_CONST               0 (None)
+            548 RETURN_VALUE
+
+Disassembly of openSecondWindow:
+              0 MAKE_CELL                1 (lw)
+
+ 71           2 RESUME                   0
+
+ 72           4 LOAD_FAST                0 (self)
+              6 LOAD_ATTR                0 (listWidget)
+             16 STORE_DEREF              1 (lw)
+
+ 73          18 LOAD_GLOBAL              3 (NULL + Window2)
+             30 LOAD_FAST                0 (self)
+             32 LOAD_ATTR                2 (textNames)
+             42 LOAD_CLOSURE             1 (lw)
+             44 BUILD_TUPLE              1
+             46 LOAD_CONST               1 (<code object <listcomp> at 0x00000185764D0930, file "C:\Users\mk.votintsev\Documents\Лиле\diplom\mainwindow.py", line 73>)
+             48 MAKE_FUNCTION            8 (closure)
+             50 LOAD_GLOBAL              7 (NULL + range)
+             62 LOAD_DEREF               1 (lw)
+             64 LOAD_METHOD              4 (count)
+             86 PRECALL                  0
+             90 CALL                     0
+            100 PRECALL                  1
+            104 CALL                     1
+            114 GET_ITER
+            116 PRECALL                  0
+            120 CALL                     0
+            130 KW_NAMES                 2
+            132 PRECALL                  2
+            136 CALL                     2
+            146 POP_TOP
+
+ 76         148 LOAD_FAST                0 (self)
+            150 LOAD_METHOD              5 (close)
+            172 PRECALL                  0
+            176 CALL                     0
+            186 POP_TOP
+            188 LOAD_CONST               0 (None)
+            190 RETURN_VALUE
+
+Disassembly of <code object <listcomp> at 0x00000185764D0930, file "C:\Users\mk.votintsev\Documents\Лиле\diplom\mainwindow.py", line 73>:
+              0 COPY_FREE_VARS           1
+
+ 73           2 RESUME                   0
+              4 BUILD_LIST               0
+              6 LOAD_FAST                0 (.0)
+        >>    8 FOR_ITER                41 (to 92)
+             10 STORE_FAST               1 (x)
+             12 LOAD_DEREF               2 (lw)
+             14 LOAD_METHOD              0 (item)
+             36 LOAD_FAST                1 (x)
+             38 PRECALL                  1
+             42 CALL                     1
+             52 LOAD_METHOD              1 (text)
+             74 PRECALL                  0
+             78 CALL                     0
+             88 LIST_APPEND              2
+             90 JUMP_BACKWARD           42 (to 8)
+        >>   92 RETURN_VALUE
