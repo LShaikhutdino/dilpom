@@ -86,9 +86,9 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
+        <y>120</y>
         <width>491</width>
-        <height>151</height>
+        <height>71</height>
        </rect>
       </property>
      </widget>
@@ -102,7 +102,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Анализ</string>
+       <string>Метрики</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_7">
@@ -117,6 +117,48 @@
       <property name="text">
        <string>Открыть файл/текст</string>
       </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>491</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <row/>
+      <row/>
+      <column>
+       <property name="text">
+        <string>Имя файла/текста</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>XGBoost</string>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string>C:/dilpom/analyze_code.py</string>
+       </property>
+      </item>
+      <item row="0" column="1">
+       <property name="text">
+        <string>66%</string>
+       </property>
+      </item>
+      <item row="1" column="0">
+       <property name="text">
+        <string>Text 1</string>
+       </property>
+      </item>
+      <item row="1" column="1">
+       <property name="text">
+        <string>23%</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -184,8 +226,8 @@
      </rect>
     </property>
     <property name="text">
-     <string>Открыть 2-ое 
-окно и статистику</string>
+     <string>Анализ кода 
+на дефекты</string>
     </property>
    </widget>
   </widget>

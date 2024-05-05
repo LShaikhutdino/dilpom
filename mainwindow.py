@@ -2,6 +2,10 @@ from PyQt6.QtWidgets import *
 from PyQt6 import uic #, QStringList
 from PyQt6.QtCore import Qt
 import sys
+import analyze_code as ac
+# Импорт библио, файлов и проч
+# https://stackoverflow.com/questions/2349991/how-do-i-import-other-python-files
+
 # from windows2 import *
 # from statistic import *
 
@@ -17,6 +21,8 @@ class MainWindow(QMainWindow):
         # self.fileNames = QStringList()
         # 2. Словарь Номер текста - Текст
         self.textNames = {}
+        # 3. Словарь Файл/текст - Его метрики
+        self.listFilesAndTexts = {}
 
         # authenticate when the login button is clicked
         # self.ui.btn_login.clicked.connect(self.authenticate)
@@ -82,7 +88,10 @@ class MainWindow(QMainWindow):
                         self.listWidget.addItem(str(fileName))
                     try:
                         # TODO: подцепить метрики из доп библиотеки
-                        # self.listFilesAndTexts[str(fileName)].analizeJSON = что-то там на аналайзерском
+                        with open(fileName, 'r', encoding="utf-8") as f:
+                            code = f.read()
+                        self.listFilesAndTexts[str(fileName)] = {}
+                        self.listFilesAndTexts[str(fileName)]['analizeJSON'] = ac.analyzeCode(code)
                         pass
                     except Exception as e:
                         print("Error with analize")
@@ -94,7 +103,8 @@ class MainWindow(QMainWindow):
             # QMessageBox.critical(self, 'Error',str((type(item))))
             # self.listWidget.removeItemWidget(item)- не работает))
             self.listWidget.takeItem(self.listWidget.row(item))
-        # TO_DO удалить текст из self.textNames
+        # TODO: удалить текст из self.textNames
+        # TODO 2: удалить текст из self.listFilesAndTexts
     
     def addText(self):
         # добавить текст в словарь
@@ -111,7 +121,8 @@ class MainWindow(QMainWindow):
         # *Обратно получить текст по его Id - название текста минус "Text "
         try:
             # TODO: подцепить метрики из доп библиотеки
-            # self.listFilesAndTexts[[str("Text " + str(maxTextId + 1))]].analizeJSON = что-то там на аналайзерском
+            self.listFilesAndTexts[str("Text " + str(maxTextId + 1))] = {}
+            self.listFilesAndTexts[str("Text " + str(maxTextId + 1))]['analizeJSON'] = ac.analyzeCode(str(self.textNames[maxTextId + 1]))
             pass
         except Exception as e:
             print("Error with analize")

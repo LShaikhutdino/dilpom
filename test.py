@@ -1,3 +1,71 @@
+import analyze_code as ac
+
+# with open("mainwindow.py", 'r', encoding="utf-8") as f:
+#     code = f.read()
+code = '''print("Hello world")
+'''
+
+import radon.complexity as rс
+print( rс.cc_visit(code) )
+print( ac.analyzeCode(code) )
+
+exit()
+listFilesAndTexts = {}
+fileName = 'C:/dilpom/analyze_code.py'
+listFilesAndTexts[str(fileName)]={'123':123}
+print(listFilesAndTexts[str(fileName)]['123'])
+# тонкости листов в Питоне
+
+exit()
+
+import analyze_code as ac
+
+with open("C:/dilpom/analyze_code.py", 'r', encoding="utf-8") as f:
+    code = f.read()
+
+print( ac.analyzeCode(code) )
+
+# def countComplexity(obj1, count, modificator = 1):
+#     if (type(obj1[4]) != 'list'):
+#     # if (obj1[4] == True):
+#         return count + modificator*obj1[-1]
+#     else:
+#         count += 2
+#         count += obj1[-1]
+#         for cc in obj1[4]:
+#             # print('cc in def:', cc)
+#             count = countComplexity(cc, count, modificator = -1)
+#     return count
+
+# import radon.complexity as rс
+# print( rс.cc_visit(code) )
+# count = 0
+
+# for cc in rс.cc_visit(code):
+#     count = countComplexity(cc, count)
+#     print(cc)
+#     print(count)
+    
+# print( 'count' )
+# print( count )
+# print( len( rс.cc_visit(code) ) )
+# print( count/len( rс.cc_visit(code) ) )
+# cyclo_cyclo = rс.cc_visit(code)
+# for k in cyclo_cyclo:
+#     print( k )  # 2. Цикломатическая 
+
+# import radon.raw as rw
+# raw_raw = rw.analyze(code)
+# for k in raw_raw:
+#     print( k )  # 2. Рооооу
+
+# import radon.metrics as rm
+# hola_hola = rm.h_visit(code)
+# for k in hola_hola[0]:
+#     print( k )  # 1. Хольстееед
+
+
+exit()
 
 import radon.metrics as rm
 import radon.complexity as rc

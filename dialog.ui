@@ -126,7 +126,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>147</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -145,7 +145,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0,5млн</string>
+    <string>82</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -164,7 +164,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>50</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -183,7 +183,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>15</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -202,7 +202,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>0</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -253,7 +253,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>2,75</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -272,7 +272,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>3</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -317,7 +317,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0,5млн</string>
+    <string>2</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -368,7 +368,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>22</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -400,7 +400,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>4</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -419,7 +419,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>11</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -464,7 +464,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0,5млн</string>
+    <string>15</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -502,7 +502,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0,5млн</string>
+    <string>140,182</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -521,7 +521,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>33</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -553,7 +553,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>0,341</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -611,7 +611,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>411,199</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -656,7 +656,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0,5млн</string>
+    <string>2,933</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -688,7 +688,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>66,603</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -707,7 +707,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>0,047</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -726,7 +726,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>22,844</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -803,7 +803,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>1млн</string>
+    <string>1</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
