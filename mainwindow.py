@@ -3,6 +3,7 @@ from PyQt6 import uic #, QStringList
 from PyQt6.QtCore import Qt
 import sys
 import analyze_code as ac
+import dialog
 # Импорт библио, файлов и проч
 # https://stackoverflow.com/questions/2349991/how-do-i-import-other-python-files
 
@@ -44,16 +45,22 @@ class MainWindow(QMainWindow):
 
     def analizeMetrics(self):
         selectedItem = self.listWidget.selectedItems()[0].text()
+        if 'Text ' in selectedItem:
+            dlg = dialog.Dialog( self.listFilesAndTexts[selectedItem]['analizeJSON'], textName = selectedItem, text = self.textNames[int(selectedItem.replace('Text ',''))] )
+        else:
+            dlg = dialog.Dialog( self.listFilesAndTexts[selectedItem]['analizeJSON'], file = selectedItem )
+        if dlg.exec(): # == QMessageBox.StandardButton.Ok):
+            QMessageBox.information(self, selectedItem, str( dlg.returnAnalizeJSON() ))
         # try...except конечно, костыль здесь, но мне лень
-        try:
-            if int(selectedItem.replace('Text ','')) in self.textNames:
-                QMessageBox.information(self, selectedItem, self.textNames[int(selectedItem.replace('Text ',''))])
-            else:
-                with open(selectedItem, 'r', encoding="utf-8") as f:
-                    QMessageBox.information(self, selectedItem, f.read())
-        except ValueError:
-            with open(selectedItem, 'r', encoding="utf-8") as f:
-                QMessageBox.information(self, selectedItem, f.read())
+        # try:
+        #     if int(selectedItem.replace('Text ','')) in self.textNames:
+        #         QMessageBox.information(self, selectedItem, self.textNames[int(selectedItem.replace('Text ',''))])
+        #     else:
+        #         with open(selectedItem, 'r', encoding="utf-8") as f:
+        #             QMessageBox.information(self, selectedItem, f.read())
+        # except ValueError:
+        #     with open(selectedItem, 'r', encoding="utf-8") as f:
+        #         QMessageBox.information(self, selectedItem, f.read())
 
     def openFileOrText(self):
         selectedItem = self.listWidget.selectedItems()[0].text()
@@ -92,6 +99,7 @@ class MainWindow(QMainWindow):
                             code = f.read()
                         self.listFilesAndTexts[str(fileName)] = {}
                         self.listFilesAndTexts[str(fileName)]['analizeJSON'] = ac.analyzeCode(code)
+                        # print( type(ac.analyzeCode(code)) )
                         pass
                     except Exception as e:
                         print("Error with analize")

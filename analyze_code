@@ -1,0 +1,118 @@
+digraph clusteranalyze_code {
+	graph [label=analyze_code]
+	1 [label="import radon.metrics as rm
+import radon.complexity as rc
+import radon.raw as rw
+import dis
+from code_info import *
+def countComplexity(obj1, count, modificator=1):...
+def analyzeCode(text_code):...
+"]
+	subgraph clustercountComplexity {
+		graph [label=countComplexity]
+		3 [label="if type(obj1[4]) != type([]):
+"]
+		4 [label="return count + modificator * obj1[-1]
+"]
+		3 -> 4 [label="type(obj1[4]) != type([])"]
+		6 [label="count += 2
+count += obj1[-1]
+"]
+		7 [label="for cc in obj1[4]:
+"]
+		8 [label="count = countComplexity(cc, count, modificator=-1)
+"]
+		"8_calls" [label=countComplexity shape=box]
+		8 -> "8_calls" [label=calls style=dashed]
+		8 -> 7 [label=""]
+		7 -> 8 [label="obj1[4]"]
+		5 [label="return count
+"]
+		7 -> 5 [label=""]
+		6 -> 7 [label=""]
+		3 -> 6 [label="(type(obj1[4]) == type([]))"]
+	}
+	subgraph clusteranalyzeCode {
+		graph [label=analyzeCode]
+		14 [label="returnedJSON = {}
+count = 0
+len_cc = 0
+"]
+		15 [label="for cc in rc.cc_visit(text_code):
+"]
+		16 [label="count = countComplexity(cc, count)
+len_cc += 1
+"]
+		"16_calls" [label=countComplexity shape=box]
+		16 -> "16_calls" [label=calls style=dashed]
+		16 -> 15 [label=""]
+		15 -> 16 [label="rc.cc_visit(text_code)"]
+		17 [label="if len_cc == 0:
+"]
+		18 [label="returnedJSON['v_g'] = 0
+"]
+		19 [label="returnedJSON['ev_g'] = 2
+returnedJSON['iv_g'] = 3
+hola_hola = rm.h_visit(text_code)
+returnedJSON['length'] = hola_hola[0][5]
+returnedJSON['volume'] = hola_hola[0][7]
+returnedJSON['calculated_length'] = hola_hola[0][6]
+returnedJSON['difficulty'] = hola_hola[0][8]
+if returnedJSON['difficulty'] == 0:
+"]
+		"19_calls" [label="rm.h_visit" shape=box]
+		19 -> "19_calls" [label=calls style=dashed]
+		21 [label="returnedJSON['intelligence'] = 0
+"]
+		22 [label="returnedJSON['effort'] = hola_hola[0][9]
+returnedJSON['bugs'] = hola_hola[0][11]
+returnedJSON['time'] = hola_hola[0][10]
+returnedJSON['h1'] = hola_hola[0][0]
+returnedJSON['h2'] = hola_hola[0][1]
+returnedJSON['N1'] = hola_hola[0][2]
+returnedJSON['N2'] = hola_hola[0][3]
+raw_raw = rw.analyze(text_code)
+returnedJSON['LOC'] = raw_raw[0]
+returnedJSON['SLOC'] = raw_raw[2]
+returnedJSON['single_comments'] = raw_raw[6]
+returnedJSON['blank'] = raw_raw[5]
+returnedJSON['multi'] = raw_raw[4]
+bytecode = dis.Bytecode(text_code)
+opcode_list = []
+"]
+		"22_calls" [label="rw.analyze
+dis.Bytecode" shape=box]
+		22 -> "22_calls" [label=calls style=dashed]
+		24 [label="for instr in bytecode:
+"]
+		25 [label="opcode_list.append(instr.opname)
+"]
+		"25_calls" [label="opcode_list.append" shape=box]
+		25 -> "25_calls" [label=calls style=dashed]
+		25 -> 24 [label=""]
+		24 -> 25 [label=bytecode]
+		26 [label="returnedJSON['count_branch'] = count_branch(opcode_list)
+print(returnedJSON)
+return returnedJSON
+"]
+		"26_calls" [label="count_branch
+print" shape=box]
+		26 -> "26_calls" [label=calls style=dashed]
+		24 -> 26 [label=""]
+		22 -> 24 [label=""]
+		21 -> 22 [label=""]
+		19 -> 21 [label="returnedJSON['difficulty'] == 0"]
+		23 [label="returnedJSON['intelligence'] = 1 / hola_hola[0][8]
+"]
+		23 -> 22 [label=""]
+		19 -> 23 [label="(returnedJSON['difficulty'] != 0)"]
+		18 -> 19 [label=""]
+		17 -> 18 [label="len_cc == 0"]
+		20 [label="returnedJSON['v_g'] = count / len_cc
+"]
+		20 -> 19 [label=""]
+		17 -> 20 [label="(len_cc != 0)"]
+		15 -> 17 [label=""]
+		14 -> 15 [label=""]
+	}
+}

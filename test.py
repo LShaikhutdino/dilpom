@@ -1,13 +1,16 @@
 import analyze_code as ac
 
-# with open("mainwindow.py", 'r', encoding="utf-8") as f:
-#     code = f.read()
-code = '''print("Hello world")
-'''
+with open("mainwindow.py", 'r', encoding="utf-8") as f:
+    code = f.read()
+# code = '''print("Hello world")
+# '''
 
-import radon.complexity as rс
-print( rс.cc_visit(code) )
-print( ac.analyzeCode(code) )
+print( ac.analyzeCode(code)['loc'] )
+
+
+# import radon.complexity as rс
+# print( rс.cc_visit(code) )
+# print( ac.analyzeCode(code) )
 
 exit()
 listFilesAndTexts = {}
