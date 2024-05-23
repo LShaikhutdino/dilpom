@@ -4,8 +4,6 @@ from PyQt6.QtCore import Qt
 import sys
 import analyze_code as ac
 import dialog
-from lightautoml.automl.presets.tabular_presets import TabularAutoML
-from lightautoml.tasks import Task
 import dill
 import pandas as pd
 # Импорт библио, файлов и проч
@@ -17,6 +15,8 @@ import pandas as pd
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        # Используется стандартный метод подключения интерфейса. Сконфигурированный файл с расширением .ui создан в прикладной 
+        # программе Qt Designer и подложен в папку с основным скриптом программы.
         self.ui = uic.loadUi('mainwindow.ui', self)
         # self.ui = uic.loadUi('window2.ui', self)
         # self.ui = uic.loadUi('window2.ui', self)
@@ -24,11 +24,13 @@ class MainWindow(QMainWindow):
         # Свойства основного окна
         # 1. Список файлов/текстов
         # self.fileNames = QStringList()
-        # 2. Словарь Номер текста - Текст
+        # 2. В строке 29 происходит определение словаря "Номер текста - Текст". Он используется для хранения текста, введенного текста
+        # вручную на второй из вкладок основного окна.
         self.textNames = {}
-        # 3. Словарь Файл/текст - Его метрики
+        # 3. В строке 32 определение словаря "Файл/текст" - "Показатели кода Файла/текста". Соответствующему файлу или тексту сопоставляется
+        # список посчитанных показателей кода.
         self.listFilesAndTexts = {}
-        # 4. Загрузка обученной модели
+        # 4. В строке 35 загрузка обученной модели градиентного бустинга. В основе 
         with open('model.pkl', 'rb') as f:
             self.automl = dill.load(f) #, pickle_module=dill)
 
