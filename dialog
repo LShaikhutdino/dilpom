@@ -1,0 +1,99 @@
+digraph clusterdialog {
+	graph [label=dialog]
+	1 [label="from PyQt6.QtWidgets import QDialog
+from PyQt6 import uic
+import sys
+from staticfg import CFGBuilder
+from pathlib import Path
+def __init__(self, analizeJSON={}, file=None, textName=None, text=None):...
+def openGraf(self):...
+def returnAnalizeJSON(self):...
+"]
+	subgraph cluster__init__ {
+		graph [label=__init__]
+		3 [label="super().__init__()
+self.ui = uic.loadUi('dialog.ui', self)
+self.analizeJSON = analizeJSON
+self.lineEdit.setText(str(analizeJSON['LOC']))
+self.lineEdit_8.setText(str(analizeJSON['SLOC']))
+self.lineEdit_4.setText(str(analizeJSON['blank']))
+self.lineEdit_5.setText(str(analizeJSON['multi']))
+self.lineEdit_3.setText(str(analizeJSON['single_comments']))
+self.lineEdit_8.setText(str(analizeJSON['v_g']))
+self.lineEdit_10.setText(str(analizeJSON['ev_g']))
+self.lineEdit_9.setText(str(analizeJSON['iv_g']))
+self.lineEdit_11.setText(str(analizeJSON['h1']))
+self.lineEdit_13.setText(str(analizeJSON['h2']))
+self.lineEdit_12.setText(str(analizeJSON['N1']))
+self.lineEdit_14.setText(str(analizeJSON['N2']))
+self.lineEdit_15.setText(str(analizeJSON['length']))
+self.lineEdit_14.setText(str(analizeJSON['volume']))
+self.lineEdit_19.setText(str(analizeJSON['calculated_length']))
+self.lineEdit_16.setText(str(analizeJSON['intelligence']))
+self.lineEdit_18.setText(str(analizeJSON['effort']))
+self.lineEdit_17.setText(str(analizeJSON['difficulty']))
+self.lineEdit_20.setText(str(analizeJSON['bugs']))
+self.lineEdit_21.setText(str(analizeJSON['time']))
+self.lineEdit_22.setText(str(analizeJSON['count_branch']))
+self.file = file
+self.text = text
+self.textName = textName
+self.ui.pushButton_3.clicked.connect(self.openGraf)
+"]
+		"3_calls" [label=".__init__
+uic.loadUi
+self.lineEdit.setText
+self.lineEdit_8.setText
+self.lineEdit_4.setText
+self.lineEdit_5.setText
+self.lineEdit_3.setText
+self.lineEdit_8.setText
+self.lineEdit_10.setText
+self.lineEdit_9.setText
+self.lineEdit_11.setText
+self.lineEdit_13.setText
+self.lineEdit_12.setText
+self.lineEdit_14.setText
+self.lineEdit_15.setText
+self.lineEdit_14.setText
+self.lineEdit_19.setText
+self.lineEdit_16.setText
+self.lineEdit_18.setText
+self.lineEdit_17.setText
+self.lineEdit_20.setText
+self.lineEdit_21.setText
+self.lineEdit_22.setText
+self.ui.pushButton_3.clicked.connect" shape=box]
+		3 -> "3_calls" [label=calls style=dashed]
+	}
+	subgraph clusteropenGraf {
+		graph [label=openGraf]
+		6 [label="if self.text:
+"]
+		7 [label="cfg = CFGBuilder().build_from_src(self.textName, self.text)
+cfg.build_visual(self.textName, 'png')
+"]
+		"7_calls" [label=".build_from_src
+cfg.build_visual" shape=box]
+		7 -> "7_calls" [label=calls style=dashed]
+		8 [label="if self.file:
+"]
+		9 [label="fileName = Path(self.file).stem
+cfg = CFGBuilder().build_from_file(fileName, self.file)
+cfg.build_visual(fileName, 'png')
+"]
+		"9_calls" [label="Path
+.build_from_file
+cfg.build_visual" shape=box]
+		9 -> "9_calls" [label=calls style=dashed]
+		8 -> 9 [label="self.file"]
+		7 -> 8 [label=""]
+		6 -> 7 [label="self.text"]
+		6 -> 8 [label="(not self.text)"]
+	}
+	subgraph clusterreturnAnalizeJSON {
+		graph [label=returnAnalizeJSON]
+		13 [label="return self.analizeJSON
+"]
+	}
+}

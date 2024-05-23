@@ -1,3 +1,104 @@
+
+from lightautoml.automl.presets.tabular_presets import TabularAutoML
+from lightautoml.tasks import Task
+import dill
+import pandas as pd
+# print(test_pred)
+# import joblib
+with open('model.pkl', 'rb') as f:
+    automl = dill.load(f) #, pickle_module=dill)
+
+
+text_json = {'v_g': 2.0, 'ev_g': 2, 'iv_g': 3, 'length': 4, 'volume': 6.339850002884625, 'calculated_length': 2.0, 'difficulty': 0.5, 'intelligence': 2.0, 'effort': 3.1699250014423126, 'bugs': 0.002113283334294875, 'time': 0.17610694452457293, 'h1': 1, 'h2': 2, 'N1': 2, 'N2': 2, 'LOC': 81, 'SLOC': 61, 'single_comments': 10, 'blank': 10, 'multi': 0, 'count_branch': 0}
+text_json['loc'] = text_json['LOC']
+text_json['v(g)'] = text_json['v_g']
+text_json['ev(g)'] = text_json['ev_g']
+text_json['iv(g)'] = text_json['iv_g']
+text_json['n'] = text_json['length']
+text_json['v'] = text_json['volume']
+text_json['l'] = text_json['calculated_length']
+text_json['d'] = text_json['difficulty']
+text_json['i'] = text_json['intelligence']
+text_json['e'] = text_json['effort']
+text_json['b'] = text_json['bugs']
+text_json['t'] = text_json['time']
+text_json['lOCode'] = text_json['SLOC']
+text_json['lOComment'] = text_json['single_comments']
+text_json['lOBlank'] = text_json['blank']
+text_json['locCodeAndComment'] = text_json['multi']
+text_json['uniq_Op'] = text_json['h1']
+text_json['uniq_Opnd'] = text_json['h2']
+text_json['total_Op'] = text_json['N1']
+text_json['total_Opnd'] = text_json['N2']
+text_json['branchCount'] = text_json['count_branch']
+
+del text_json['LOC']
+del text_json['v_g']
+del text_json['ev_g']
+del text_json['iv_g']
+del text_json['length']
+del text_json['volume']
+del text_json['calculated_length']
+del text_json['difficulty']
+del text_json['intelligence']
+del text_json['effort']
+del text_json['bugs']
+del text_json['time']
+del text_json['SLOC']
+del text_json['single_comments']
+del text_json['blank']
+del text_json['multi']
+del text_json['h1']
+del text_json['h2']
+del text_json['N1']
+del text_json['N2']
+del text_json['count_branch']
+
+# v(g)
+# ev(g)
+# iv(g)
+# n
+# v
+# l
+# d
+# i
+# e
+# b
+# t
+# lOCode
+# lOComment
+# lOBlank
+# locCodeAndComment
+# uniq_Op
+# uniq_Opnd
+# total_Op
+# total_Opnd
+# branchCount
+
+for k, v in text_json.items():
+  text_json[k] = [v]
+text_json_pd = pd.DataFrame(text_json)
+text_json_pd
+pred = automl.predict(text_json_pd)
+pred = pred.to_numpy()
+
+print( float(str(pred[0, 'WeightedBlend_0'])) )
+# print( pred['WeightedBlend_0', 0] )
+# np.array(pred,np.float32)
+# for i in pred:
+#     print(i)
+#     np.array(i,np.float32)
+#     for j in i:
+#         print(np.array(j,np.float32))
+print( pred._hstack )
+print( pred[0].features )
+print( type(pred) )
+# n1 = np.array(pred)
+# print(n1)
+# print( pred.dtype )
+# print( float(str(pred[0][0])) ) #.astype(float) )
+
+exit()
 import analyze_code as ac
 
 with open("mainwindow.py", 'r', encoding="utf-8") as f:

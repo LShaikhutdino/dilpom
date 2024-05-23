@@ -1,7 +1,5 @@
 digraph "clusterText 1" {
 	graph [label="Text 1"]
-	1 [label="print('Hello world')
-"]
-	"1_calls" [label=print shape=box]
-	1 -> "1_calls" [label=calls style=dashed]
+	1 [label=123
+]
 }

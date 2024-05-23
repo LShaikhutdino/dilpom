@@ -47,24 +47,16 @@ len_cc += 1
 		16 -> "16_calls" [label=calls style=dashed]
 		16 -> 15 [label=""]
 		15 -> 16 [label="rc.cc_visit(text_code)"]
-		17 [label="if len_cc == 0:
-"]
-		18 [label="returnedJSON['v_g'] = 0
-"]
-		19 [label="returnedJSON['ev_g'] = 2
+		17 [label="returnedJSON['v_g'] = count / len_cc
+returnedJSON['ev_g'] = 2
 returnedJSON['iv_g'] = 3
 hola_hola = rm.h_visit(text_code)
 returnedJSON['length'] = hola_hola[0][5]
 returnedJSON['volume'] = hola_hola[0][7]
 returnedJSON['calculated_length'] = hola_hola[0][6]
 returnedJSON['difficulty'] = hola_hola[0][8]
-if returnedJSON['difficulty'] == 0:
-"]
-		"19_calls" [label="rm.h_visit" shape=box]
-		19 -> "19_calls" [label=calls style=dashed]
-		21 [label="returnedJSON['intelligence'] = 0
-"]
-		22 [label="returnedJSON['effort'] = hola_hola[0][9]
+returnedJSON['intelligence'] = 1 / hola_hola[0][8]
+returnedJSON['effort'] = hola_hola[0][9]
 returnedJSON['bugs'] = hola_hola[0][11]
 returnedJSON['time'] = hola_hola[0][10]
 returnedJSON['h1'] = hola_hola[0][0]
@@ -80,38 +72,25 @@ returnedJSON['multi'] = raw_raw[4]
 bytecode = dis.Bytecode(text_code)
 opcode_list = []
 "]
-		"22_calls" [label="rw.analyze
+		"17_calls" [label="rm.h_visit
+rw.analyze
 dis.Bytecode" shape=box]
-		22 -> "22_calls" [label=calls style=dashed]
-		24 [label="for instr in bytecode:
+		17 -> "17_calls" [label=calls style=dashed]
+		18 [label="for instr in bytecode:
 "]
-		25 [label="opcode_list.append(instr.opname)
+		19 [label="opcode_list.append(instr.opname)
 "]
-		"25_calls" [label="opcode_list.append" shape=box]
-		25 -> "25_calls" [label=calls style=dashed]
-		25 -> 24 [label=""]
-		24 -> 25 [label=bytecode]
-		26 [label="returnedJSON['count_branch'] = count_branch(opcode_list)
-print(returnedJSON)
+		"19_calls" [label="opcode_list.append" shape=box]
+		19 -> "19_calls" [label=calls style=dashed]
+		19 -> 18 [label=""]
+		18 -> 19 [label=bytecode]
+		20 [label="returnedJSON['count_branch'] = count_branch(opcode_list)
 return returnedJSON
 "]
-		"26_calls" [label="count_branch
-print" shape=box]
-		26 -> "26_calls" [label=calls style=dashed]
-		24 -> 26 [label=""]
-		22 -> 24 [label=""]
-		21 -> 22 [label=""]
-		19 -> 21 [label="returnedJSON['difficulty'] == 0"]
-		23 [label="returnedJSON['intelligence'] = 1 / hola_hola[0][8]
-"]
-		23 -> 22 [label=""]
-		19 -> 23 [label="(returnedJSON['difficulty'] != 0)"]
-		18 -> 19 [label=""]
-		17 -> 18 [label="len_cc == 0"]
-		20 [label="returnedJSON['v_g'] = count / len_cc
-"]
-		20 -> 19 [label=""]
-		17 -> 20 [label="(len_cc != 0)"]
+		"20_calls" [label=count_branch shape=box]
+		20 -> "20_calls" [label=calls style=dashed]
+		18 -> 20 [label=""]
+		17 -> 18 [label=""]
 		15 -> 17 [label=""]
 		14 -> 15 [label=""]
 	}

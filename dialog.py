@@ -41,6 +41,26 @@ class Dialog(QDialog):
         self.text = text
         self.textName = textName
         self.ui.pushButton_3.clicked.connect(self.openGraf)
+        # 3.1. Редактировать поле ev(g)
+        self.ui.pushButton.clicked.connect(self.editEvG)
+        # 3.2. Редактировать поле iv(g)
+        self.ui.pushButton_2.clicked.connect(self.editIvG)
+
+    def editEvG(self):
+        currentState = self.ui.lineEdit_10.isEnabled()
+        self.ui.lineEdit_10.setEnabled( not currentState )
+        if currentState:
+            self.analizeJSON['ev_g'] = str( self.ui.lineEdit_10.text() )
+        else:
+            self.ui.lineEdit_10.setFocus()
+
+    def editIvG(self):
+        currentState = self.ui.lineEdit_9.isEnabled()
+        self.ui.lineEdit_9.setEnabled( not currentState )
+        if currentState:
+            self.analizeJSON['iv_g'] = str( self.ui.lineEdit_9.text() )
+        else:
+            self.ui.lineEdit_9.setFocus()
 
     def openGraf(self):
 
