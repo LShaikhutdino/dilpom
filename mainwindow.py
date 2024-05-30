@@ -15,7 +15,7 @@ import pandas as pd
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        # Используется стандартный метод подключения интерфейса. Сконфигурированный файл с расширением .ui создан в прикладной 
+        # Строка 20. Используется стандартный метод подключения интерфейса. Сконфигурированный файл с расширением .ui создан в прикладной 
         # программе Qt Designer и подложен в папку с основным скриптом программы.
         self.ui = uic.loadUi('mainwindow.ui', self)
         # self.ui = uic.loadUi('window2.ui', self)
@@ -57,62 +57,68 @@ class MainWindow(QMainWindow):
         self.show()
 
     def totalAnalize(self):
+        # В строках 61-62 и 113-115 по выделенному элементу строки (тексту программы или файлу, его содержащему) из таблицы происходит копирование списка метрик в отдельную переменную, обработка и занесение их в прогностическую модель компьютерного (машинного) обучения. На шаге занесения метрик в обучающую модель выдается результат предсказания - вероятность присутствия дефектов в интересуемом коде.
         selectedItem = self.tableWidget.selectedItems()[0].text()
         text_json = self.listFilesAndTexts[selectedItem]['analizeJSON'].copy()
 
-        text_json['loc'] = text_json['LOC']
-        text_json['v(g)'] = text_json['v_g']
-        text_json['ev(g)'] = text_json['ev_g']
-        text_json['iv(g)'] = text_json['iv_g']
-        text_json['n'] = text_json['length']
-        text_json['v'] = text_json['volume']
-        text_json['l'] = text_json['calculated_length']
-        text_json['d'] = text_json['difficulty']
-        text_json['i'] = text_json['intelligence']
-        text_json['e'] = text_json['effort']
-        text_json['b'] = text_json['bugs']
-        text_json['t'] = text_json['time']
-        text_json['lOCode'] = text_json['SLOC']
-        text_json['lOComment'] = text_json['single_comments']
-        text_json['lOBlank'] = text_json['blank']
-        text_json['locCodeAndComment'] = text_json['multi']
-        text_json['uniq_Op'] = text_json['h1']
-        text_json['uniq_Opnd'] = text_json['h2']
-        text_json['total_Op'] = text_json['N1']
-        text_json['total_Opnd'] = text_json['N2']
-        text_json['branchCount'] = text_json['count_branch']
+        try:
+            text_json['loc'] = text_json['LOC']
+            text_json['v(g)'] = text_json['v_g']
+            text_json['ev(g)'] = text_json['ev_g']
+            text_json['iv(g)'] = text_json['iv_g']
+            text_json['n'] = text_json['length']
+            text_json['v'] = text_json['volume']
+            text_json['l'] = text_json['calculated_length']
+            text_json['d'] = text_json['difficulty']
+            text_json['i'] = text_json['intelligence']
+            text_json['e'] = text_json['effort']
+            text_json['b'] = text_json['bugs']
+            text_json['t'] = text_json['time']
+            text_json['lOCode'] = text_json['SLOC']
+            text_json['lOComment'] = text_json['single_comments']
+            text_json['lOBlank'] = text_json['blank']
+            text_json['locCodeAndComment'] = text_json['multi']
+            text_json['uniq_Op'] = text_json['h1']
+            text_json['uniq_Opnd'] = text_json['h2']
+            text_json['total_Op'] = text_json['N1']
+            text_json['total_Opnd'] = text_json['N2']
+            text_json['branchCount'] = text_json['count_branch']
 
-        del text_json['LOC']
-        del text_json['v_g']
-        del text_json['ev_g']
-        del text_json['iv_g']
-        del text_json['length']
-        del text_json['volume']
-        del text_json['calculated_length']
-        del text_json['difficulty']
-        del text_json['intelligence']
-        del text_json['effort']
-        del text_json['bugs']
-        del text_json['time']
-        del text_json['SLOC']
-        del text_json['single_comments']
-        del text_json['blank']
-        del text_json['multi']
-        del text_json['h1']
-        del text_json['h2']
-        del text_json['N1']
-        del text_json['N2']
-        del text_json['count_branch']
+            del text_json['LOC']
+            del text_json['v_g']
+            del text_json['ev_g']
+            del text_json['iv_g']
+            del text_json['length']
+            del text_json['volume']
+            del text_json['calculated_length']
+            del text_json['difficulty']
+            del text_json['intelligence']
+            del text_json['effort']
+            del text_json['bugs']
+            del text_json['time']
+            del text_json['SLOC']
+            del text_json['single_comments']
+            del text_json['blank']
+            del text_json['multi']
+            del text_json['h1']
+            del text_json['h2']
+            del text_json['N1']
+            del text_json['N2']
+            del text_json['count_branch']
+        except:
+            exit()
 
         for k, v in text_json.items():
             text_json[k] = [v]
         text_json_pd = pd.DataFrame(text_json)
         text_json_pd
         pred = self.automl.predict(text_json_pd)
-        pred = pred.to_numpy()
+
         i = self.ui.tableWidget.currentRow()
 
         print( str(pred[0, 'WeightedBlend_0']) )
+        # В строках 121-122 результат предсказания преобразовывается в широко распространенный формат данных NumPy для дальнейшей обработки и вывода в колонку напротив выделенного элемента строки, использованному на предыдущем этапе.
+        pred = pred.to_numpy()
         self.ui.tableWidget.setItem(i, 1, QTableWidgetItem( str(pred[0, 'WeightedBlend_0']) ))
 
     def analizeMetrics(self):
